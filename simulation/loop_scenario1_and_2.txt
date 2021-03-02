@@ -1,0 +1,22 @@
+#!/bin/bash
+for act in 10 30 50
+do
+for repind in {1..25}
+do
+
+echo "#!/bin/bash" >> script.out
+echo "#SBATCH --job-name=simulation" >> script.out
+echo "#SBATCH --partition=day-long-cpu" >> script.out
+
+echo "module purge" >> script.out
+echo "module load R" >> script.out
+
+echo "Rscript --vanilla scenario1.R $act $repind" >> script.out
+# echo "Rscript --vanilla scenario2.R $act $repind" >> script.out
+
+chmod +x script.out
+sbatch ./script.out
+rm -rf script.out
+
+done
+done
