@@ -19,8 +19,8 @@ EM_toU <- function(G, d=3, u1=0.5, sig.a=2, sig.u=2, tol=10^(-10), maxiter=200){
   sG = func.vtm(G)
   g = graph_from_adjacency_matrix(sG)
   D = distances(g, mode='all')
-  # D[D==Inf] = max(D[D!=Inf])+10
-  D[D==Inf] = p
+  D[D==Inf] = max(D[D!=Inf])+10
+  # D[D==Inf] = p
   z0 = cmdscale(D,(d-1))
 
   u1=0.5
